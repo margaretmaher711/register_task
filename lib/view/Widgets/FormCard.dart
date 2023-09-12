@@ -39,14 +39,14 @@ class FormCard extends StatelessWidget {
             children: <Widget>[
               const Text("Login",
                   style: TextStyle(
-                      fontSize: 45,
+                      fontSize: 30,
                       fontFamily: "Poppins-Bold",
                       letterSpacing: .6)),
               const SizedBox(
                 height: 30,
               ),
               const Text("Username",
-                  style: TextStyle(fontFamily: "Poppins-Medium", fontSize: 26)),
+                  style: TextStyle(fontFamily: "Poppins-Medium", fontSize: 20)),
               TextField(
                 controller: userNameController,
                 decoration: InputDecoration(
@@ -58,7 +58,7 @@ class FormCard extends StatelessWidget {
                 height: 30,
               ),
               const Text("PassWord",
-                  style: TextStyle(fontFamily: "Poppins-Medium", fontSize: 26)),
+                  style: TextStyle(fontFamily: "Poppins-Medium", fontSize: 20)),
               TextField(
                 controller: passwordController,
                 obscureText: true,
@@ -80,7 +80,7 @@ class FormCard extends StatelessWidget {
                       style: TextStyle(
                           color: Colors.blue,
                           fontFamily: "Poppins-Medium",
-                          fontSize: 20),
+                          fontSize: 15),
                     ),
                   )
                 ],

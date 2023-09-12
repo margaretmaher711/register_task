@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:register_app_task/view/screens/sign_up_screen.dart';
+import 'package:get/get.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: SignUpScreen(),
     );

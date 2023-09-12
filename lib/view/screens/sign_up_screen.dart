@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:register_app_task/view/screens/home_screen.dart';
 import '../../constants/custom_icons.dart';
 import '../../constants/reusable_widgets.dart';
 import '../Widgets/FormCard.dart';
 import '../Widgets/SocialIcons.dart';
+import '../Widgets/custom_button.dart';
+import 'package:get/get.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -29,12 +32,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
-                child: Image.asset("assets/image_01.png"),
+                child: Image.asset("assets/images/image_01.png"),
               ),
               Expanded(
                 child: Container(),
               ),
-              Expanded(child: Image.asset("assets/image_02.png"))
+              Expanded(child: Image.asset("assets/images/image_02.png"))
             ],
           ),
           SingleChildScrollView(
@@ -42,18 +45,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
               padding:
                   const EdgeInsets.only(left: 28.0, right: 28.0, top: 60.0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Row(
                     children: <Widget>[
                       Image.asset(
-                        "assets/logo.png",
-                        width: 110,
-                        height: 110,
+                        "assets/images/logo.png",
+                        width: 70,
+                        height: 70,
                       ),
                       const Text("LOGO",
                           style: TextStyle(
                               fontFamily: "Poppins-Bold",
-                              fontSize: 46,
+                              fontSize: 25,
                               letterSpacing: .6,
                               fontWeight: FontWeight.bold))
                     ],
@@ -91,41 +95,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   fontSize: 12, fontFamily: "Poppins-Medium"))
                         ],
                       ),
-                      InkWell(
-                        onTap: () {setState(() {
+                      SizedBox(width: 150,
+                        child: InkWell(
+                          onTap: () {
+                            setState(() {});
+                            if (_errorPassword == null &&
+                                _errorUserName == null) {
+                              Get.to(()=>HomeScreen(
+                                userName:
+                                _userNameController.text.toString(),
+                              ));
 
-                        });
-                          if (_errorPassword == null &&
-                              _errorUserName == null) {
-                            // notify the parent widget via the onSubmit callback
-                            print('object');
-                          }
-                        },
-                        child: Container(
-                          width: 330,
-                          height: 100,
-                          decoration: BoxDecoration(
-                              gradient: const LinearGradient(colors: [
-                                Color(0xFF17ead9),
-                                Color(0xFF6078ea)
-                              ]),
-                              borderRadius: BorderRadius.circular(6.0),
-                              boxShadow: [
-                                BoxShadow(
-                                    color:
-                                        const Color(0xFF6078ea).withOpacity(.3),
-                                    offset: const Offset(0.0, 8.0),
-                                    blurRadius: 8.0)
-                              ]),
-                          child: const Center(
-                            child: Text("SIGNIN",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "Poppins-Bold",
-                                    fontSize: 18,
-                                    letterSpacing: 1.0)),
-                          ),
-                        ),
+                              // notify the parent widget via the onSubmit callback
+                              print('object');
+                            }
+                          },
+                          child: CustomButton(txt:"SIGNIN",),
+                      ),
                       )
                     ],
                   ),
@@ -212,32 +198,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   String? get _errorUserName {
-    // at any time, we can get the text from _controller.value.text
     final text = _userNameController.value.text;
-    // Note: you can do your own custom validation here
-    // Move this logic this outside the widget for more testable code
+
     if (text.isEmpty) {
       return 'Can\'t be empty';
     }
     if (text.length < 4) {
       return 'Too short';
     }
-    // return null if the text is valid
     return null;
   }
 
   String? get _errorPassword {
-    // at any time, we can get the text from _controller.value.text
     final text = _passwordController.value.text;
-    // Note: you can do your own custom validation here
-    // Move this logic this outside the widget for more testable code
     if (text.isEmpty) {
       return 'Can\'t be empty';
     }
     if (text.length <= 5) {
       return 'this is a weak password';
     }
-    // return null if the text is valid
     return null;
   }
 }
